@@ -226,19 +226,14 @@ The voxel visibility model is a mapping function from data attributes of voxels 
 %-------------------------------------------------------------------------
 \subsection{Visibility-Based Sketching and Picking}
 
-Sketching
-
 The visibility of a sample refers to the alpha contribution of a sample to the final image, taking into account also the degree to which it is occluded by other samples in the view.
 %This visibility can be computed as the difference between the accumulated alpha of a sample and the accumulated alpha of the previous sample along a ray in volume ray-casting.
 %Correa et al. presented the general notion of visibility histograms \cite{correa_visibility_2011} which represent the distribution of visibility over intensity ranges in a volume rendering image.
 
 Guo et al. \cite{guo_wysiwyg_2011} proposed a sketch-based manipulation technique for volume visualization based on clustering of depth, visibility, alpha and intensity. Subsequently, they described another sketch-based technique to specify local transfer functions for topology regions using contour trees \cite{guo_local_2013}. 
 
-Picking
-
 Wiebel et al. \cite{wiebel_wysiwyp:_2012} found that the user usually perceives features at a screen position with the highest visibility along the ray and they exploited this information in their volume picking technique.
-
-Stoppel et al. \cite{elmqvist_visibility-driven_2014}
+Based on the WYSIWYP technique, Stoppel et al. \cite{elmqvist_visibility-driven_2014} presented an algorithm called surfseek for selecting surfaces on the most visible features in direct volume rendering. The algorithm detects feature boundary points using WYSIWYP and then constructs a weighted graph and computes its minimal cut, from which it reconstructs the desired surface.
 
 %-------------------------------------------------------------------------
 	\subsection{Conclusions}

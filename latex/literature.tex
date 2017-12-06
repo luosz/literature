@@ -236,9 +236,259 @@ Wiebel et al. \cite{wiebel_wysiwyp:_2012} found that the user usually perceives 
 Based on the WYSIWYP technique, Stoppel et al. \cite{elmqvist_visibility-driven_2014} presented an algorithm called surfseek for selecting surfaces on the most visible features in direct volume rendering. The algorithm detects feature boundary points using WYSIWYP and then constructs a weighted graph and computes its minimal cut, from which it reconstructs the desired surface.
 
 %-------------------------------------------------------------------------
-	\subsection{Conclusions}
+%-------------------------------------------------------------------------
+%chapter3
+\section{Related Work}
+%More recent approaches introduced visibility
+%\cite{correa_visibility_2011}
+A number of approaches have been proposed to automate the design of transfer functions,
+and these are discussed in detail in Section~\ref{literature_of_transfer_function}. Here, we briefly discuss the most closely related previous works to the contribution of this chapter.
 
+Maciejewski et al. \cite{maciejewski_structuring_2009} described a method to structure attribute space in order to guide users to regions of interest within the transfer function histogram.
+Chan et al. \cite{chan_perception-based_2009} developed a system to optimize transparency automatically in volume rendering based on Metelli's episcotister model to improve the perceptual quality of transparent structures.
+Correa and Ma \cite{correa_visibility-driven_2009} proposed the visibility histogram to guide the transfer function design. In a later work \cite{correa_visibility_2011}, they generalized the visibility histogram and proposed a semi-automatic method for generating transfer functions by maximizing the visibility of important structures based on the visibility histogram, which represents the contribution of voxels to the resulting image.
+Ruiz et al. \cite{ruiz_automatic_2011} also used visibility as a main parameter for the transfer function specification. Their method obtains the opacity transfer function by minimizing the informational divergence between the visibility distribution captured by a set of viewpoints and a target distribution defined by the user. Later, Bramon et al. \cite{bramon_information_2013} extended this approach to deal with multimodal information.
+
+%The approach in this paper is based on our previous work% previous work by Luo and Dingliana
+%\cite{luo_information-guided_2014} on optimizing transfer functions by minimizing the variance of control point weighting, which is generated from the intensity distribution of the data set. User-selected regions are taken into account, in order to enhance priority intensity ranges of importance to the user in the resulting image, and the approach,  in contrast to others discussed previously, is viewpoint-independent.
+%In this paper, we extend this further by introducing
+%%In this paper, we present extensions to this work which introduce 
+%an intensity-based method to facilitate interactive exploration of volume data sets. In addition, we provide a more generalized approach to the distribution of control points, which in the original paper was limited to simplified tent-shaped distributions. Finally, we describe how to propagate optimization of the transfer functions through different time-steps of time-varying data volume sets.
+
+%%%%%%%%%%%%%%%%
+
+%Recent work on incorporating
+%statistical and information metrics into time-varying
+%volumetric data includes work by Fang et al. \cite{fang_visualization_2007} on the time
+%activity curve, J{\"a}nicke et al. on local statistical complexity
+%analysis \cite{janicke_multifield_2007}, and Haidacher et al. \cite{haidacher_information-based_2008} on utilizing information
+%theory for fusing traditional transfer function space with
+%information enhanced transfer function spaces.
+
+%and measures derived from information theory \cite{haidacher_information-based_2008} 
+%\cite{bruckner_isosurface_2010}
+%\cite{ruiz_automatic_2011}
+%\cite{bramon_information_2013}
+
+%Much of the work in the field of volume visualization has been focused on the synthesis of photorealistic images to assist in the visualization of structures contained in volume data sets.
+%However, traditional depictions of the same types of data, such as those found in medical textbooks, deliberately use non-realistic techniques to draw the viewer's attention to important aspects \cite{bruckner_style_2007}. Using abstraction, visual overload is prevented and thus result in a more effective visualization.
+%
+%Bruckner et al. introduced the concept of style transfer functions \cite{bruckner_style_2007}.
+%Techniques from traditional art and illustration are incorporated in the volume rendering process. The goal is to gain clarity compared to photorealism by emphasizing important features, improving data exploration. Less relevant details are omitted and important aspects are highlighted, resulting in more comprehensible images.
+%Although researchers have developed a great number of visualization techniques for static volume data, how to effectively explore and understand time-varying volume data remains a challenging problem. Finding good transfer functions for time-varying volume data is more difficult than for static volume data, as data value ranges and distributions change over time.
+%%Coherence is an important issue of transfer function design for time-varying volume data.
+%Jankun-Kelly and Ma \cite{jankun-kelly_study_2001} examined how to combine transfer functions for different time-steps to generate a coherent transfer function.
+%Woodring et al. \cite{woodring_high_2003} considered time-varying volume data as four-dimensional data field and provided a user interface to specify hyperplanes in 4D.
+%Woodring and Shen \cite{woodring_chronovolumes_2003} introduced an alternative approach to render multiple time-steps in a sequence with different colors into a single image. This approach provides the context of surrounding time steps but coherence of color among time-steps is hard to maintain.
+%Tikhonova et al. \cite{tikhonova_exploratory_2010} presented an explorative approach based on a compact representation of each time step of the data set in the form of ray attenuation functions. Ray attenuation functions are subsequently used for transfer function generation.
+%\cite{maciejewski_structuring_2009}
+%\cite{maciejewski_abstracting_2013}
+%\cite{mindek_visual_2013}
+%\cite{rodriguez_state---art_2014}
+%\cite{ip_hierarchical_2012}
+
+%Despite the advances of these methods, transfer function design for volume rendering is still an open research problem.
+
+\section{Background}
+\label{sec:background}
+%This section describes the background related to our methods.
+\subsection{Transfer Function Specification}
+%\begin{figure}
+%  \centering
+%    \includegraphics[width=0.6\textwidth]{drawing_distribution.png}
+%  \caption{A transfer function with three components which correspond to three intensity intervals}
+%  \label{fig:drawing_distribution}
+%\end{figure}
+
+%A typical class of 1D (intensity-based) transfer function is based on linear ramps between user-specified control points.
+
+%Volume rendering is used to display a 2D image of a three-dimensional (3D) data set. It can be seen as a projection of a 3D volumetric data set into a two-dimensional (2D) image.
+%In volume rendering, every volumetric element (voxel) must be mapped to opacity and a color.
+%This is done with a transfer function, which can be a simple ramp, a piecewise linear function or an arbitrary table.
+%Figure~\ref{fig:konig_mastering_2000} displays four typical shapes used in transfer function design.
+%%All the four shapes can reveal structures in volume data sets.
+%For volume data sets with complex structures, tent-like shapes are more effective in revealing isosurfaces of structures and seeing through inner structures. Otherwise, the ramp shape and other shapes can also reveal structures effectively.
+
+\begin{table}
+	\centering
+	%\begin{minipage}{.5\textwidth}
+	\normalsize
+	\begin{tabular}{llll}
+		\hline
+		air & fat & soft tissue & bone (cancellous/dense)\\
+		\hline
+		-1000 & -100 to -50 & +100 to +300 & +700 to +3000\\
+		\hline
+	\end{tabular}
+	\caption{Hounsfield units of some typical substances \cite{feeman_mathematics_2009}}
+	\label{table:Hounsfield_unit}
+	%\end{minipage}
+\end{table}
+
+\begin{figure}
+	\centering
 	
+	\begin{subfigure}{.24\textwidth}
+		\includegraphics[width=1\textwidth]{konig_mastering_2000-zhou_automatic_2009_a.jpg}
+	\end{subfigure}
+	\begin{subfigure}{.24\textwidth}
+		\includegraphics[width=1\textwidth]{konig_mastering_2000-zhou_automatic_2009_b.jpg}
+	\end{subfigure}
+	\begin{subfigure}{.24\textwidth}
+		\includegraphics[width=1\textwidth]{konig_mastering_2000-zhou_automatic_2009_c.jpg}
+	\end{subfigure}
+	\begin{subfigure}{.24\textwidth}
+		\includegraphics[width=1\textwidth]{konig_mastering_2000-zhou_automatic_2009_d.jpg}
+	\end{subfigure}
+	\caption{Typical transfer function shapes \cite{konig_mastering_2000}}
+	\label{fig:konig_mastering_2000}
+	\begin{subfigure}{.6\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{drawing_distribution.png}
+	\end{subfigure}
+	\caption{A transfer function with tent-like shapes}
+	\label{fig:drawing_distribution}
+\end{figure}
+
+In the specification of a 1D (intensity-based) transfer function, the user essentially assigns a color and/or opacity to a certain point in the histogram of scalar values in the data set. In practice, the user would be presented with an interface that allows them to set up several control points which corresponds to a certain kind of material or structure. The user then defines a mapping from each control point to some visual property (e.g. color) resulting in voxels of the corresponding intensity to be rendered in that color.
+Figure~\ref{fig:konig_mastering_2000} displays four typical shapes used in transfer function design.
+%All the four shapes can reveal structures in volume data sets.
+If a volume data set contains complex structures, tent-like shapes are desirable in revealing isosurfaces of structures and seeing through inner structures. Otherwise, the ramp shape and other shapes can also reveal structures effectively.% \cite{zhou_automatic_2009}
+
+In order to design transfer functions effectively, it is commonly required that users have prior knowledge about which intensity ranges are relevant or which regions should be emphasized in the data. This is especially the case in medical visualization. For instance, in computed tomography (CT) data the intensity ranges are determined by the Hounsfield scale (Table~\ref{table:Hounsfield_unit}). The user may expect the constituent's intensity of CT data to follow the Hounsfield scale and thus set up control points accordingly.
+%For instance, they might chose that bone should be mapped on to white and muscle to blue.
+%However, small changes made to the opacity of control points may lead to dramatic changes in the rendered images.
+%In many cases, minuscule modulation of opacity is required, but this kind of tiny adjustment of control points may be impossible to make accurately through mouse interaction due to limited accuracy of mouse movements.
+
+%Another consideration is that voxels of a particular color can be more visually meaningful to the viewer than voxels of another color.
+%An observation by Bordoloi and Shen \cite{bordoloi_view_2005} is that voxels of a particular color can be more visually meaningful to the viewer than voxels of another color.
+%For instance, if there are two groups of voxels with different intensity in a scene, if the size of the first group of voxels is considerably less than the second one, then it is possible that the second group of voxels completely occludes the first one.
+%Features inside other material are likely to be of far less voxels and are often occluded by the surrounding material.
+%Additionally, Gestalt principles \cite{pessoa_finding_1998} suggest that the human mind would extrapolate the larger object (called ground) behind the smaller one (called figure). Thus the first group of voxels should have higher importance than the second one in order to be seen or distinguished.
+Another consideration is that interior structures are likely to comprise far fewer voxels and are often occluded by the surrounding material.
+Consider the transfer function in Figure~\ref{fig:drawing_distribution}. The user finds three intensity intervals of interest and then sets up three sets of control points in order to visualize these intensity intervals. The opacity of the three peak control points are assigned equally as they are equally important.
+However, if the distribution of voxels follows $ p(x) $ (the blue curve), the voxels of the leftmost intensity intervals may completely occlude voxels of the other two intensity intervals in the resulting image.
+%The global optimization in our approach aims at reducing this kind of occlusion by modulating the opacity of the transfer function based on the entropy of volume data, which is described in Section~\ref{entropy_of_volume_data}.
+%Figure~\ref{fig:multiple_nucleon} illustrates a transfer function which is more appropriate in this situation.
+%Although many shapes can be used in transfer function design, tent-like shapes are often sufficient to model the user's intent \cite{konig_mastering_2000}. In this chapter, results of both transfer functions of tent-like shapes and continuous transfer functions are used as input of the optimization.
+
+\subsection{Entropy of Volume Data \label{entropy_of_volume_data}}
+In computer graphics, information-theoretic measures, such as entropy and mutual information, have been applied to solve multiple problems in areas such as view selection \cite{bordoloi_view_2005} 
+%\cite{takahashi_feature-driven_2005}
+\cite{bramon_information-theoretic_2013}, flow visualization \cite{xu_information-theoretic_2010}, multi-modal visualization \cite{haidacher_information-based_2008} \cite{bramon_information_2013} and transfer function design \cite{bruckner_isosurface_2010} \cite{ip_hierarchical_2012}.
+Information theory provides a theoretic framework to measure the information content (or uncertainty) of a random variable represented as a distribution \cite{wang_information_2011}.
+Consider a discrete random variable X which has a set of possible values $\{a_{0},a_{1},...,a_{n-1} \}$ with probabilities of occurrence $\{ p_{0},p_{1},...,p_{n-1} \}$, we can measure the uncertainty of the outcome with the entropy H(X), which is defined by
+\[  H(X)=-\sum_{x \in X} p(x) \log p(x) 
+%\addtag
+\]
+where the summation is over the corresponding alphabet and the convention $ 0\log 0=0 $ is taken% \cite{sbert_information_2011}
+.
+The term $ -\log p(x) $ represents the information content associated with the result x.
+If the entire volume data set is treated as a random variable, $ I(a_{x})=-\log p(x) $ represents the information content of a voxel $ a_{x} $ with intensity x, and the entropy gives us the average amount of information of a volume data.
+The probability p(x) is defined by
+$ p(x)=\frac{n_{x}}{n} $, where $ n_{x} $ is the number of voxels with intensity x and n is the total number of voxels in the volume data.
+
+%In Bordoloi and Shen \cite{bordoloi_view_2005}'s work for view selection of volume rendering, the entire volume data set is treated as a random variable.
+
+%Bordoloi and Shen \cite{bordoloi_view_2005} and Takahashi et al. \cite{takahashi_feature-driven_2005} introduced the entropy to evaluate the quality of a viewpoint.
+
+%In Bordoloi and Shen's work \cite{bordoloi_view_2005}, 
+
+Bordoloi and Shen \cite{bordoloi_view_2005} described a noteworthiness factor to denote the significance of the voxel to the visualization.
+The noteworthiness should be high for the voxels which are desired to be seen, and vice versa. The noteworthiness of voxel $ j $ is defined as
+$ W_{j}=\alpha_{j}I_{j}=-\alpha_{j}logf_{j} $
+, where $ \alpha_{j} $ is the opacity of voxel $ j $ looked up from the transfer function, $ I_{j} $ is the information carried by voxel $ j $, which can be derived from the frequency of its histogram bin $ f_{j} $. -log $ f_{j} $ represents the amount of information associated with voxel $ j $.
+
+%-------------------------------------------------------------------------
+%-------------------------------------------------------------------------
+%chapter4
+\section{Related Work}
+Several computational models of visual saliency for modeling human attention have been developed.
+Itti et al. \cite{itti_model_1998} developed a computational model of visual attention based on the center-surround operators in an image. This center-surround mechanism has the intuitive appeal of being able to identify regions that are different from their surrounding context.
+Based on the perceptual principles, Chen et al. \cite{chan_perception-based_2009} introduced several image quality measures to enhance the perceived quality of semitransparent features.
+J{\"a}nicke and Chen \cite{janicke_salience-based_2010} described a quality metric for analyzing the saliency of visualization images and demonstrated its usefulness with examples from information visualization, volume visualization and flow visualization.
+
+Lee et al. \cite{lee_mesh_2005} proposed saliency for meshes based on a multi-scale center-surround mechanism that operates on local curvature. Kim and Varshney \cite{kim_saliency-guided_2006} presented the use of a center-surround operator using the Laplacian of Gaussian-weighted averages of appearance attributes to enhance selected regions of a volume and validated their work using an eye-tracking user study. Shen et al. \cite{shen_spatiotemporal_2015} extended this technique to spatiotemporal volume saliency to detect both spatial and temporal changes.
+
+Visibility measures the impact of individual voxels on the image generated by a volumetric object and visibility distribution can be utilized as a measure on the quality of transfer functions as users explore the transfer function space. Visibility has been studied to measure the quality of a given viewpoint \cite{bordoloi_view_2005} \cite{viola_importance-driven_2004} and to enhance the rendering process with cutaway views.
+Correa and Ma \cite{correa_visibility_2011} introduced visibility histogram, which describes the accumulated visibility of each intensity value in the transfer function.
+
+Ruiz et al. \cite{ruiz_automatic_2011} proposed an automatic method to generate a transfer function by minimizing the Kullback-Leibler divergence between the observed visibility distribution and a target distribution provided by the user. Wang et al. \cite{wang_efficient_2011} extended the idea of the visibility histogram to feature visibility and introduced an interaction scheme where the opacity of each feature was generated automatically based on user-defined visibility values. Visibility distribution is also used in automating color mapping \cite{cai_automatic_2013} and 2D transfer functions \cite{qin_voxel_2015}.
+
+%A number of general quality metrics have been proposed, including abstraction \cite{chen_measuring_2005} \cite{van_wijk_value_2005} and aesthetics \cite{filonik_measuring_2009} and visual saliency \cite{janicke_salience-based_2010}.
+%Giesen et al. \cite{giesen_conjoint_2007} presented an user study design and analysis strategy geared to measure preceived quality in volume rendering.
+%Wu et al. \cite{wu_quantitative_2010} described four types of quantitative assessments for volume rendered images, which are distinguishability measure, edge consistency measure, contour clarity measure and depth coherence measure.
+
+
+%Various strategies have been proposed to simplify transfer function specification \cite{pfister_transfer_2001}.
+%Data-centric strategies examine the properties of volume data sets.
+%Overlapping intensity intervals corresponding to different materials make boundary detection difficult. Classical approaches try to detect boundary information between tissues by introducing derived attributes such as first and second derivatives to isolate materials \cite{kindlmann_semi-automatic_1998} \cite{kniss_multidimensional_2002} \cite{kindlmann_transfer_2002}.
+%In this case, the transfer functions are extended to multidimensional feature spaces. As a result, the interaction of transfer functions becomes more complex and unintuitive as the dimensionality becomes higher.
+%%Even two-dimensional transfer functions require a considerable amount of user interaction to find a meaningful shape \cite{arens_survey_2010}.
+%Even in the case of two-dimensional transfer functions, a considerable amount of user interaction is
+%required in order to come up with meaningful results \cite{arens_survey_2010}.
+
+
+%Compared to visibility histograms, visibility volumes have a distinctive advantage, i.e. they maintain the spatial information of voxels in the volume.
+
+
+%A number of approaches have been proposed to automate the design of transfer functions.
+%Wu and Qu \cite{wu_interactive_2007} developed a method that uses editing operations and stochastic search of the transfer function parameters to maximize the similarity between volume-rendered images given by the user.
+%Maciejewski et al. \cite{maciejewski_structuring_2009} described a method to structure attribute space in order to guide users to regions of interest within the transfer function histogram.
+%Chan et al. \cite{chan_perception-based_2009} developed a system to optimize transparency automatically in volume rendering based on Metelli's episcotister model to improve the perceptual quality of transparent structures.
+%Correa and Ma \cite{correa_visibility-driven_2009} proposed the visibility histogram to guide the transfer function design.
+
+%-------------------------------------------------------------------------
+%-------------------------------------------------------------------------
+%chapter5
+\section{Related Work}
+% line search \cite{armijo_minimization_1966}
+% conjugate gradient descent \cite{shewchuk_introduction_1994}
+Transfer function specification is a non-trivial and unintuitive task in volume visualization. Compared to typical transfer function approaches, which are often subjective, it is desirable to have objective feedback regarding the clarity of features in volume visualization.
+
+%Based on the perceptual principles, Chen et al. \cite{chan_perception-based_2009} introduced several image quality measures to enhance the perceived quality of semitransparent features.
+%J{\"a}nicke and Chen \cite{janicke_salience-based_2010} described a quality metric for analyzing the saliency of visualization images and demonstrated its usefulness with examples from information visualization, volume visualization and flow visualization.
+
+Correa and Ma \cite{correa_visibility-driven_2009} introduced visibility histograms to guide transfer function design for both manual and automatic adjustment.
+Visibility histograms (Figure~\ref{fig:correa_visibility-driven_2009}), which summarize the distribution of visibility of voxels from a given viewpoint, are a powerful feedback mechanism for volume visualization \cite{emsenhuber_visibility_2008}.
+Wang et al. \cite{wang_efficient_2011} extended visibility histograms to feature visibility histograms, in order to measures the influence of each feature to the resulting images. They described a scheme that allows users to specify a desired visibility for features of interest and subsequently the opacity transfer function is optimized using an active set algorithm \cite{polyak_conjugate_1969}.
+
+%\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
+
+Researchers have developed a variety of parallel strategies to accelerate sequential optimization algorithms \cite{spedicato_algorithms_2012}.
+%\cite{koko_parallel_1998}
+Phua et al. \cite{phua_parallel_1998} proposed a parallel extension to quasi-Newton methods \cite{yang_optimization_2001}. Their approach generates several search directions at each iteration and then applies different line search and scaling strategies in parallel along each search direction.
+Peachey et al. \cite{peachey_parallel_2009} presented another approach to parallelize the quasi-Newton methods.
+In their applications, the objective function evaluation typically requires minutes or hours of processing time. Therefore, they introduced an approach that evaluates the objective function in parallel over a cluster of computers and continues to the next iteration before all evaluations finish in order to accelerate convergence.
+
+
+%-------------------------------------------------------------------------
+%-------------------------------------------------------------------------
+%chapter6
+\section{Related Work}
+The visualization of time-varying data is an important and active topic in the visualization community. Transfer function specification for static volume data has been widely studied over the years \cite{pfister_transfer_2001}. However, much less work has been done for transfer function design of time-varying data.
+
+Jankun-Kelly and Ma first studied transfer function specification for time-varying data \cite{jankun-kelly_study_2001}.
+Kniss and Hansen applied the techniques from multidimensional transfer function based volume rendering to the visualization of multivariate data from weather simulations \cite{kniss_volume_2002}.
+%Akiba et al. presented the use of time histogram for simultaneous classification of time-varying data in order to find transfer functions that classify all the time steps of the data set \cite{akiba_simultaneous_2006}.
+%Woodring and Shen presented a method for the comparison of different data fields through the expression of a volume shader that composes data fields together with set operations \cite{woodring_multi-variate_2006}.
+%Wang et al. introduced an importance measure based on conditional entropy and categorize temporal behaviors by clustering the importance curves over time \cite{wang_importance-driven_2008}.
+%Data analysis techniques for high dimensional spaces, such as parallel coordinates \cite{akiba_visualizing_2007} \cite{guo_scalable_2012} and principal component analysis \cite{liu_multivariate_2014}, were also investigated for exploring multivariate time-varying data sets.
+%\cite{luo_information-guided_2014}.
+Akiba et al. \cite{akiba_visualizing_2007} described three approaches for the data-fusion problem in multivariate data visualization.
+One approach, which is to use one variable for each color channel in RGB space, is popular because of its simplicity but is limiting due to the difficulty for viewers to interpret the resulting color.
+The second approach, is to use one of the values based on some criterion e.g. \cite{hastreiter_integrated_1998}
+use alternating sampling for rendering two volumes and this has been shown to work well for medical imaging but not for fluid flow visualization.
+The third approach is to compute a weighted sum of all the values. This approach is more flexible however this may not be guaranteed to lead to an effective visualization as blending different colors might lead to ambiguous mixing of different hues.
+
+%for the last point: SHOULD EXPLAIN WHY?
+
+%-------------------------------------------------------------------------
+%-------------------------------------------------------------------------
+
+\subsection{Conclusions}
+
+
 %-------------------------------------------------------------------------
 	
 %\bibliographystyle{eg-alpha}

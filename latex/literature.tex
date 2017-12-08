@@ -99,8 +99,12 @@ A Survey on Automated Transfer Function Design and Optimization for Volume Visua
 %%	%        $^2$ Another Department to illustrate the use in papers from authors
 %%	%             with different affiliations
 %}
-\author{
-The Graphics Vision and Visualisation group (GV2), Trinity College Dublin, Ireland
+\author[S. Luo \& J. Dingliana]
+{Shengzhou Luo
+and
+John Dingliana
+\\
+Graphics Vision and Visualisation group (GV2), Trinity College Dublin
 }
 % ------------------------------------------------------------------------
 
@@ -213,7 +217,7 @@ Classical approaches to this problem try to detect boundary information between 
 The introduction of multidimensional transfer functions alleviates the material separation problem.
 Instead of classifying a voxel based on a single scalar value, multidimensional transfer functions allow a voxel to be classified based on a combination of values.
 Multidimensional transfer functions are very effective means to extract materials and their boundaries for both scalar and multivariate data.
-Multidimensional transfer functions are discussed in more detail in the next subsection.
+%Multidimensional transfer functions are discussed in more detail in the next subsection.
 
 In addition, various user interfaces were proposed to simplify the design of multidimensional transfer functions \cite{tzeng_novel_2003} \cite{tzeng_cluster-space_2004}.
 However, the parameter spaces of multidimensional transfer functions are more complex (compared to 1D transfer functions) and thus introduce problems such as requirement for large amount of user interaction, missing precision or the interaction being complex and unintuitive \cite{arens_survey_2010}.
@@ -483,11 +487,12 @@ Correa and Ma \cite{correa_visibility-driven_2009} introduced visibility histogr
 Visibility histograms (Figure~\ref{fig:correa_visibility-driven_2009}), which summarize the distribution of visibility of voxels from a given viewpoint, are a powerful feedback mechanism for volume visualization \cite{emsenhuber_visibility_2008}.
 Wang et al. \cite{wang_efficient_2011} extended visibility histograms to feature visibility histograms, in order to measures the influence of each feature to the resulting images. They described a scheme that allows users to specify a desired visibility for features of interest and subsequently the opacity transfer function is optimized using an active set algorithm \cite{polyak_conjugate_1969}.
 
-Researchers have developed a variety of parallel strategies to accelerate sequential optimization algorithms \cite{spedicato_algorithms_2012}.
-%\cite{koko_parallel_1998}
-Phua et al. \cite{phua_parallel_1998} proposed a parallel extension to quasi-Newton methods \cite{yang_optimization_2001}. Their approach generates several search directions at each iteration and then applies different line search and scaling strategies in parallel along each search direction.
-Peachey et al. \cite{peachey_parallel_2009} presented another approach to parallelize the quasi-Newton methods.
-In their applications, the objective function evaluation typically requires minutes or hours of processing time. Therefore, they introduced an approach that evaluates the objective function in parallel over a cluster of computers and continues to the next iteration before all evaluations finish in order to accelerate convergence.
+%% Optimization algorithms are not so relevant
+%Researchers have developed a variety of parallel strategies to accelerate sequential optimization algorithms \cite{spedicato_algorithms_2012}.
+%%\cite{koko_parallel_1998}
+%Phua et al. \cite{phua_parallel_1998} proposed a parallel extension to quasi-Newton methods \cite{yang_optimization_2001}. Their approach generates several search directions at each iteration and then applies different line search and scaling strategies in parallel along each search direction.
+%Peachey et al. \cite{peachey_parallel_2009} presented another approach to parallelize the quasi-Newton methods.
+%In their applications, the objective function evaluation typically requires minutes or hours of processing time. Therefore, they introduced an approach that evaluates the objective function in parallel over a cluster of computers and continues to the next iteration before all evaluations finish in order to accelerate convergence.
 
 %-------------------------------------------------------------------------
 

@@ -375,7 +375,7 @@ Based on perceptual principles, Chan et al. \cite{chan_perception-based_2009} in
 J{\"a}nicke and Chen \cite{janicke_salience-based_2010} described a quality metric for analyzing the saliency of visualization images and demonstrated its usefulness with examples from information visualization, volume visualization and flow visualization.
 
 Shen et al. \cite{shen_save:_2014} proposed the use of saliency to assist volume exploration. They described a method for inferring interaction position in volume visualization, in order to help users pick focused features conveniently.
-Shen et al. \cite{shen_spatiotemporal_2015} described spatiotemporal volume saliency, which extended the saliency field \cite{kim_saliency-guided_2006} to time-varying volume data. Luo and Dingliana \cite{luo_visibility-weighted_2015} proposed a visibility-weighted saliency metric that combines both aspects of visibility and saliency.
+Shen et al. \cite{shen_spatiotemporal_2015} described spatiotemporal volume saliency, which extended the saliency field \cite{kim_saliency-guided_2006} to time-varying volume data. Luo and Dingliana \cite{luo_visibility-weighted_2015} proposed visibility-weighted saliency that combines both aspects of visibility and saliency.
 
 \subsection{Visibility Histograms and Visibility-Driven Transfer Functions}
 Visibility has been studied in measuring viewpoint quality \cite{bordoloi_view_2005} and enhancing ghost and cutaway views \cite{viola_importance-driven_2004} in volume visualization.
@@ -486,7 +486,7 @@ In their later work \cite{maciejewski_abstracting_2013}, instead of using the at
 Correa and Ma \cite{correa_visibility-driven_2009} introduced visibility histograms to guide transfer function design for both manual and automatic adjustment.
 Visibility histograms (Figure~\ref{fig:correa_visibility-driven_2009}), which summarize the distribution of visibility of voxels from a given viewpoint, are a powerful feedback mechanism for volume visualization \cite{emsenhuber_visibility_2008}.
 Wang et al. \cite{wang_efficient_2011} extended visibility histograms to feature visibility histograms, in order to measures the influence of each feature to the resulting images. They described a scheme that allows users to specify a desired visibility for features of interest and subsequently the opacity transfer function is optimized using an active set algorithm \cite{polyak_conjugate_1969}.
-Luo and Dingliana \cite{luo_transfer_function_2017} proposed an optimization approach that automatically refines a transfer function towards a simply-defined visibility distribution provided by the user, based on a model \cite{luo_visibility-weighted_2015} that takes into account both visibility and saliency.
+Luo and Dingliana \cite{luo_transfer_function_2017} proposed an optimization approach that automatically refines a transfer function towards a simply-defined visibility distribution provided by the user, based on visibility-weighted saliency \cite{luo_visibility-weighted_2015} that takes into account both visibility and saliency.
 
 %% Optimization algorithms are not so relevant
 %Researchers have developed a variety of parallel strategies to accelerate sequential optimization algorithms \cite{spedicato_algorithms_2012}.

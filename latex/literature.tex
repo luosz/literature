@@ -492,10 +492,10 @@ In their applications, the objective function evaluation typically requires minu
 %-------------------------------------------------------------------------
 
 \section{Time-Varying Volume Visualization}
-The visualization of time-varying data is an important and active topic in the visualization community. Transfer function specification for static volume data has been widely studied over the years \cite{pfister_transfer_2001}. However, much less work has been done for transfer function design of time-varying data.
-
-Jankun-Kelly and Ma first studied transfer function specification for time-varying data \cite{jankun-kelly_study_2001}.
-Kniss and Hansen applied the techniques from multidimensional transfer function based volume rendering to the visualization of multivariate data from weather simulations \cite{kniss_volume_2002}.
+The visualization of time-varying data is an important and active topic in the visualization community. 
+%Transfer function specification for static volume data has been widely studied over the years \cite{pfister_transfer_2001}. However, much less work has been done for transfer function design of time-varying data.
+%Jankun-Kelly and Ma first studied transfer function specification for time-varying data \cite{jankun-kelly_study_2001}.
+%Kniss and Hansen applied the techniques from multidimensional transfer function based volume rendering to the visualization of multivariate data from weather simulations \cite{kniss_volume_2002}.
 %Akiba et al. presented the use of time histogram for simultaneous classification of time-varying data in order to find transfer functions that classify all the time steps of the data set \cite{akiba_simultaneous_2006}.
 %Woodring and Shen presented a method for the comparison of different data fields through the expression of a volume shader that composes data fields together with set operations \cite{woodring_multi-variate_2006}.
 %Wang et al. introduced an importance measure based on conditional entropy and categorize temporal behaviors by clustering the importance curves over time \cite{wang_importance-driven_2008}.
@@ -510,12 +510,13 @@ The third approach is to compute a weighted sum of all the values. This approach
 %for the last point: SHOULD EXPLAIN WHY?
 
 %-------------------------------------------------------------------------
-\section{Transfer Functions for Time-Varying Volume Visualization}
-Coherence is an important issue in transfer function design for time-varying volume data. Ideally, a single transfer function should be used for the whole time-varying data set in order to obtain coherent visualization. More than one color or opacity map can be misleading or physically meaningless, because the transition from one transfer function to another may cause sudden changes in the resulting images. However, the practice of using a single transfer function is not always applicable to general time-varying data sets. In some cases, the intensity distributions change significantly over time, thus applying a single transfer function to all frames becomes ineffective.
+%\section{Transfer Functions for Time-Varying Volume Visualization}
+%Coherence is an important issue in transfer function design for time-varying volume data. Ideally, a single transfer function should be used for the whole time-varying data set in order to obtain coherent visualization. More than one color or opacity map can be misleading or physically meaningless, because the transition from one transfer function to another may cause sudden changes in the resulting images. However, the practice of using a single transfer function is not always applicable to general time-varying data sets. In some cases, the intensity distributions change significantly over time, thus applying a single transfer function to all frames becomes ineffective.
 
 Volume data sets are inherently 3D representations. Automated analysis methods, such as temporal trends or statistical aggregates e.g. mean values and standard deviations, are often applied in order to abstract dynamic characteristics of the data sets \cite{kehrer_visualization_2013}.
 %Jankun-Kelly and Ma \cite{jankun-kelly_study_2001} examined how to combine transfer functions for different time-steps to generate a coherent transfer function.
 Jankun-Kelly and Ma \cite{jankun-kelly_study_2001} examined how to combine transfer functions for different time-steps to generate a coherent transfer function.
+Hansen applied the techniques from multidimensional transfer function based volume rendering to the visualization of multivariate data from weather simulations \cite{kniss_volume_2002}.
 Woodring et al. \cite{woodring_high_2003} considered time-varying volume data as four-dimensional data field and provided a user interface to specify hyperplanes in 4D.
 Woodring and Shen \cite{woodring_chronovolumes_2003} introduced an alternative approach to render multiple time-steps in a sequence with different colors into a single image. This approach provides the context of surrounding time steps but coherence of color among time-steps is hard to maintain.
 

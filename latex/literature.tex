@@ -170,7 +170,7 @@ However, it is non-trivial to obtain an effective transfer function. The specifi
 In practice, major factors that have a great influence on transfer function setting are: partial volume effect \footnote{During the acquisition of data, the finite resolution causes contributions of different materials combined into the value of a single voxel. This is generally referred to as the partial volume effect, which results in blurred boundaries and hampers the detection of small or thin structures. \cite{serlie_classifying_2007}}, non-uniform distribution of materials and noise \cite{serlie_computed_2003}.
 Among these, two challenging problems that need to be tackled could be elaborated as follows: firstly, for volume data sets, e.g. those obtained by MRI and CT, different tissues are represented in similar or even overlapping ranges of scalar values; secondly, interesting interior structures are often partly or completely occluded by surrounding tissue.
 %This is common in visualizing interior structures. 
-Consequently, feature detection and understanding volume data become a big challenge.
+%Consequently, feature detection and understanding volume data become a big challenge.
 
 \begin{figure}
 	\centering
@@ -232,7 +232,7 @@ The creation of transfer functions needs to be simplified and the functionality 
 
 Moreover, transfer function specification in general is an unintuitive or even monotonous task for average users, because it usually involves an iterative process of trial and error.
 For instance, there are skin and fat tissues around the brain, and their intensities lie in the same range as the brain. If we want to visualize the brain by setting the scalar value range of the brain to opaque, the surrounding skin and fat tissue will also become opaque. Then the brain will be occluded by the surrounding soft tissues which make it difficult to explore the brain structure.
-Common approaches to this problem are to introduce explicit segmentation of structures of interest before the volume rendering process \cite{rezk-salama_opacity_2006}. In fact, the process of applying the transfer function could be interpreted as a segmentation problem.
+Common approaches to this problem are introducing explicit segmentation of structures of interest before the volume rendering process \cite{rezk-salama_opacity_2006}. In fact, the process of applying the transfer function could be interpreted as a segmentation problem.
 %-------------------------------------------------------------------------
 %-------------------------------------------------------------------------
 
@@ -350,8 +350,8 @@ $ p(x)=\frac{n_{x}}{n} $, where $ n_{x} $ is the number of voxels with intensity
 
 Bordoloi and Shen \cite{bordoloi_view_2005} described a noteworthiness factor to denote the significance of the voxel to the visualization.
 The noteworthiness should be high for the voxels which are desired to be seen, and vice versa. The noteworthiness of voxel $ j $ is defined as
-$ W_{j}=\alpha_{j}I_{j}=-\alpha_{j}logf_{j} $
-, where $ \alpha_{j} $ is the opacity of voxel $ j $ looked up from the transfer function, $ I_{j} $ is the information carried by voxel $ j $, which can be derived from the frequency of its histogram bin $ f_{j} $. -log $ f_{j} $ represents the amount of information associated with voxel $ j $.
+$ W_{j}=\alpha_{j}I_{j}=-\alpha_{j}log f_{j} $
+, where $ \alpha_{j} $ is the opacity of voxel $ j $ looked up from the transfer function, $ I_{j} $ is the information carried by voxel $ j $, which can be derived from the frequency of its histogram bin $ f_{j} $. $ -log f_{j} $ represents the amount of information associated with voxel $ j $.
 
 
 %-------------------------------------------------------------------------	
@@ -375,7 +375,7 @@ Based on perceptual principles, Chan et al. \cite{chan_perception-based_2009} in
 J{\"a}nicke and Chen \cite{janicke_salience-based_2010} described a quality metric for analyzing the saliency of visualization images and demonstrated its usefulness with examples from information visualization, volume visualization and flow visualization.
 
 Shen et al. \cite{shen_save:_2014} proposed the use of saliency to assist volume exploration. They described a method for inferring interaction position in volume visualization, in order to help users pick focused features conveniently.
-Shen et al. \cite{shen_spatiotemporal_2015} described spatiotemporal volume saliency, which extended the saliency field \cite{kim_saliency-guided_2006} to time-varying volume data. Recently, Luo and Dingliana \cite{luo_visibility-weighted_2015} proposed a metric that combines both aspects of visibility and saliency and this is exploited in the approach presented in this paper.  
+Shen et al. \cite{shen_spatiotemporal_2015} described spatiotemporal volume saliency, which extended the saliency field \cite{kim_saliency-guided_2006} to time-varying volume data. Luo and Dingliana \cite{luo_visibility-weighted_2015} proposed a visibility-weighted saliency metric that combines both aspects of visibility and saliency.
 
 \subsection{Visibility Histograms and Visibility-Driven Transfer Functions}
 Visibility has been studied in measuring viewpoint quality \cite{bordoloi_view_2005} and enhancing ghost and cutaway views \cite{viola_importance-driven_2004} in volume visualization.
@@ -486,6 +486,7 @@ In their later work \cite{maciejewski_abstracting_2013}, instead of using the at
 Correa and Ma \cite{correa_visibility-driven_2009} introduced visibility histograms to guide transfer function design for both manual and automatic adjustment.
 Visibility histograms (Figure~\ref{fig:correa_visibility-driven_2009}), which summarize the distribution of visibility of voxels from a given viewpoint, are a powerful feedback mechanism for volume visualization \cite{emsenhuber_visibility_2008}.
 Wang et al. \cite{wang_efficient_2011} extended visibility histograms to feature visibility histograms, in order to measures the influence of each feature to the resulting images. They described a scheme that allows users to specify a desired visibility for features of interest and subsequently the opacity transfer function is optimized using an active set algorithm \cite{polyak_conjugate_1969}.
+Luo and Dingliana \cite{luo_transfer_function_2017} proposed an optimization approach that automatically refines a transfer function towards a simply-defined visibility distribution provided by the user, based on a model \cite{luo_visibility-weighted_2015} that takes into account both visibility and saliency.
 
 %% Optimization algorithms are not so relevant
 %Researchers have developed a variety of parallel strategies to accelerate sequential optimization algorithms \cite{spedicato_algorithms_2012}.

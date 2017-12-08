@@ -99,7 +99,9 @@ A Survey on Transfer Function Design and Optimization for Volume Visualization B
 %%	%        $^2$ Another Department to illustrate the use in papers from authors
 %%	%             with different affiliations
 %}
-
+\author{
+The Graphics Vision and Visualisation group (GV2), Trinity College Dublin, Ireland
+}
 % ------------------------------------------------------------------------
 
 % if the Editors-in-Chief have given you the data, you may uncomment
@@ -230,7 +232,7 @@ Common approaches to this problem are to introduce explicit segmentation of stru
 %-------------------------------------------------------------------------
 %-------------------------------------------------------------------------
 
-\subsection{1D Transfer Function Specification}
+\subsection{1D Transfer Functions}
 
 \begin{table}
 	\centering
@@ -286,7 +288,7 @@ Consider the transfer function in Figure~\ref{fig:drawing_distribution}. The use
 However, if the distribution of voxels follows $ p(x) $ (the blue curve), the voxels of the leftmost intensity intervals may completely occlude voxels of the other two intensity intervals in the resulting image.
 
 
-\subsection{Multidimensional Transfer Functions \label{Multidimensional_Transfer_Functions}}
+\subsection{Multidimensional Transfer Functions}
 Multidimensional transfer functions \cite{kniss_interactive_2001}, which are mappings from intensity and other variables, such as first and second derivatives to color and opacity, have demonstrated their effectiveness in distinguishing boundaries between materials in volume data.
 
 
@@ -325,7 +327,7 @@ In addition, parallel coordinates and dimensionality reduction algorithms (e.g. 
 \section{Entropy, Visibility and Saliency in Volume Visualization}
 Transfer function specification is an unintuitive task often achieved using subjective manual input. For generalizable solutions, it is desirable to have objective feedback regarding the clarity of features in volume visualization.
 
-\subsection{Entropy of Volume Data \label{entropy_of_volume_data}}
+\subsection{Entropy of Volume Data}
 In computer graphics, information-theoretic measures, such as entropy and mutual information, have been applied to solve multiple problems in areas such as view selection \cite{bordoloi_view_2005} 
 %\cite{takahashi_feature-driven_2005}
 \cite{bramon_information-theoretic_2013}, flow visualization \cite{xu_information-theoretic_2010}, multi-modal visualization \cite{haidacher_information-based_2008} \cite{bramon_information_2013} and transfer function design \cite{bruckner_isosurface_2010} \cite{ip_hierarchical_2012}.
@@ -444,7 +446,7 @@ Based on the WYSIWYP technique, Stoppel et al. \cite{elmqvist_visibility-driven_
 
 %-------------------------------------------------------------------------
 %-------------------------------------------------------------------------
-\section{Transfer Function Generation and Optimization}
+\section{Transfer Function Optimization}
 Transfer function specification is a non-trivial and unintuitive task in volume visualization. Compared to typical transfer function approaches, which are often subjective, it is desirable to have objective feedback regarding the clarity of features in volume visualization.
 Researches have proposed various approaches to automate the design of transfer functions and provide acceptable suggestions which can be further edited by users. However, the usefulness of a transfer function mostly depends on the underlying question the user wants to answer. Moreover, users' tasks vary drastically from one domain to another. Therefore, most techniques work semi-automatically and very few techniques consider domain knowledge in the design process \cite{zudilova-seinstra_trends_2008}.
 
